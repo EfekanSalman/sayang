@@ -1,45 +1,65 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Untukmu – 💖</title>
+  <title data-i18n="home.title">Untukmu – 💖</title>
   <meta name="description" content="Surat-surat, permainan, dan impian — Istanbul ⇄ Palu">
   <link rel="stylesheet" href="styles.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 </head>
+
 <body>
   <header class="site-header">
     <div class="container">
       <div class="brand">
         <span class="logo">💖</span>
-        <span>Untukmu</span>
+        <span data-i18n="home.brand">Untukmu</span>
       </div>
       <nav>
-        <a href="letter.html">💌 Surat</a>
-        <a href="map.html">🌍 Peta</a>
-        <a href="plans.html">📝 Rencana</a>
+        <a href="letter.html">💌 <span data-i18n="nav.letter">Surat</span></a>
+        <a href="map.html">🌍 <span data-i18n="nav.map">Peta</span></a>
+        <a href="map.html">🌍 <span data-i18n="nav.map">Harita</span></a>
+        <!-- Added Games Link -->
+        <a href="romantic_games.html">🎮 <span data-i18n="nav.game">Oyunlar</span></a>
       </nav>
     </div>
   </header>
   <main class="container">
     <section class="hero">
-      <h1>Situs ini hanya untukmu 💖</h1>
-      <p>Jarak pun tak bisa memisahkan hati. Permainan kecil, surat-surat, dan impian ada di sini.</p>
+      <h1 data-i18n="home.heroTitle">Situs ini hanya untukmu 💖</h1>
+      <p data-i18n="home.heroText">Jarak pun tak bisa memisahkan hati. Permainan kecil, surat-surat, dan impian ada di
+        sini.</p>
+
+      <!-- Moon Phase Widget -->
+      <div class="moon-widget-container">
+        <div class="moon-visual" id="moon-visual">
+          <div class="moon-shadow" id="moon-shadow"></div>
+        </div>
+        <div class="moon-text">
+          <p class="moon-phase-name" id="moon-phase-name">...</p>
+          <small data-i18n="home.moonSlogan">Nerede olursak olalım, aynı aya bakıyoruz 🌙</small>
+        </div>
+      </div>
+
       <div>
-        <a class="btn" href="letter.html">Buka Surat ✉️</a>
+        <a class="btn" href="letter.html" data-i18n="home.btnLetter">Buka Surat ✉️</a>
       </div>
     </section>
   </main>
   <footer class="site-footer">
     <div class="container">
-      <small>Dibuat dengan ❤ — Istanbul ⇄ Palu</small>
+      <small data-i18n="footer.madeWith">Dibuat dengan ❤ — Istanbul ⇄ Palu</small>
       <nav>
-        <a href="postcard.html">📮 Kartu Pos</a>
-        <a href="future.html">✨ Masa Depan</a>
+        <a href="postcard.html">📮 <span data-i18n="nav.postcard">Kartu Pos</span></a>
+        <a href="future.html">✨ <span data-i18n="nav.future">Masa Depan</span></a>
       </nav>
     </div>
   </footer>
+  <script src="translations.js"></script>
+  <script src="i18n.js"></script>
 </body>
+
 </html>

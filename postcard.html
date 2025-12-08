@@ -1,50 +1,58 @@
 <!doctype html>
 <html lang="id">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Pos & Surat</title>
+  <title data-i18n="postcard.title">Pos & Surat</title>
   <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
   <header class="site-header">
     <div class="container">
-      <div class="brand"><span class="logo">📮</span><span>Pos Digital</span></div>
+      <div class="brand"><span class="logo">📮</span><span data-i18n="postcard.brand">Pos Digital</span></div>
       <nav>
-        <a href="index.html">🏠 Beranda</a>
-        <a href="letter.html">💌 Surat</a>
-        <a href="plans.html">📝 Rencana</a>
+        <a href="index.html">🏠 <span data-i18n="nav.home">Beranda</span></a>
+        <a href="letter.html">💌 <span data-i18n="nav.letter">Surat</span></a>
+        <a href="plans.html">📝 <span data-i18n="nav.plans">Rencana</span></a>
       </nav>
     </div>
   </header>
   <main class="container">
     <section class="card">
-      <div class="stamp">✉️</div>
+      <div class="stamp" data-i18n="postcard.stamp">✉️</div>
       <div class="postcard-left">
         <div class="paper paper-dark ruled handwriting" style="padding:16px;">
-          <h2>Sayangku,</h2>
-          <p>Meskipun kau jauh, aku membisikkan namamu pada cahaya pertama setiap pagi. Bahkan di tengah kebisingan kota, kau ada di tempat paling sunyi di hatiku.</p>
+          <h2 data-i18n="postcard.greeting">Sayangku,</h2>
+          <p data-i18n="postcard.p1">Meskipun kau jauh, aku membisikkan namamu pada cahaya pertama setiap pagi. Bahkan
+            di tengah kebisingan kota, kau ada di tempat paling sunyi di hatiku.</p>
           <div class="heart-divider"></div>
-          <p>Suatu hari kita akan melihat dari jendela yang sama; menyeruput kopi dari cangkir yang sama, dan mengucapkan harapan di bawah langit yang sama.</p>
+          <p data-i18n="postcard.p2">Suatu hari kita akan melihat dari jendela yang sama; menyeruput kopi dari cangkir
+            yang sama, dan mengucapkan harapan di bawah langit yang sama.</p>
           <ul class="promise-list">
-            <li>Aku akan memperkecil setiap jarak, selangkah demi selangkah.</li>
-            <li>Aku akan mengumpulkan momen-momen terindah, agar kau tersenyum.</li>
-            <li>Aku akan selalu menjadi hembusan angin musim semi yang lembut di hatimu.</li>
+            <li data-i18n="postcard.check1">Aku akan memperkecil setiap jarak, selangkah demi selangkah.</li>
+            <li data-i18n="postcard.check2">Aku akan mengumpulkan momen-momen terindah, agar kau tersenyum.</li>
+            <li data-i18n="postcard.check3">Aku akan selalu menjadi hembusan angin musim semi yang lembut di hatimu.
+            </li>
           </ul>
-          <p class="signature">— Di sisi hatimu</p>
+          <p class="signature" data-i18n="postcard.signature">— Di sisi hatimu</p>
         </div>
       </div>
       <div class="postcard-right">
-        <address class="from">Pengirim: Canim — Turki</address>
-        <address class="to">Penerima: My Sayang — Palu, Indonesia</address>
+        <address class="from" data-i18n="postcard.from">Pengirim: Canim — Turki</address>
+        <address class="to" data-i18n="postcard.to">Penerima: My Sayang — Palu, Indonesia</address>
       </div>
     </section>
   </main>
   <footer class="site-footer">
     <div class="container">
-      <small>📮 Dikirim dengan cinta</small>
+      <small data-i18n="footer.sentWithLove">📮 Dikirim dengan cinta</small>
     </div>
   </footer>
   <script src="script.js"></script>
+  <script src="translations.js"></script>
+  <script src="i18n.js"></script>
 </body>
+
 </html>

@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title data-i18n="gamePage.title">Oyunlar & Aşk – 💖</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <style>
+        /* Specific styles for game hub */
+        .game-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            margin-top: 24px;
+        }
+
+        .game-launcher {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--card-border);
+            border-radius: var(--radius);
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            transition: transform 0.2s, background 0.2s;
+            cursor: pointer;
+            text-align: center;
+            align-items: center;
+        }
+
+        .game-launcher:hover {
+            transform: translateY(-4px);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .game-icon {
+            font-size: 48px;
+            margin-bottom: 8px;
+        }
+
+        .game-launcher h3 {
+            margin: 0;
+            color: var(--primary);
+        }
+
+        .game-launcher p {
+            font-size: 14px;
+            color: var(--muted);
+            margin: 0;
+        }
+
+        /* Modal Overlay */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            display: none;
+            place-items: center;
+            padding: 20px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal-overlay.active {
+            display: grid;
+            opacity: 1;
+        }
+
+        .modal-content {
+            background: var(--bg);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            width: 100%;
+            max-width: 600px;
+            padding: 30px;
+            position: relative;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+            transform: scale(0.95);
+            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .modal-overlay.active .modal-content {
+            transform: scale(1);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: var(--text);
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 18px;
+            display: grid;
+            place-items: center;
+        }
+
+        .close-modal:hover {
+            background: var(--primary);
+        }
+
+        /* Game Specific Styles inside Modal */
+        .game-view {
+            display: none;
+            /* Hidden by default, shown by JS */
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            text-align: center;
+        }
+
+        .game-view.active {
+            display: flex;
+        }
+
+        /* Game 1 */
+        #heart-container {
+            display: grid;
+            place-items: center;
+            height: 150px;
+        }
+
+        .big-heart {
+            font-size: 80px;
+            cursor: pointer;
+            transition: transform 0.2s;
+            user-select: none;
+        }
+
+        /* Game 3 */
+        #catch-area {
+            width: 100%;
+            height: 300px;
+            border: 2px dashed var(--card-border);
+            position: relative;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .falling-heart {
+            position: absolute;
+            font-size: 28px;
+            cursor: pointer;
+            user-select: none;
+            z-index: 10;
+        }
+
+        /* Game 6 Choices */
+        .sim-choice {
+            width: 100%;
+            padding: 16px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            cursor: pointer;
+            text-align: left;
+            transition: all 0.2s;
+        }
+
+        .sim-choice:hover {
+            background: var(--primary);
+            border-color: transparent;
+        }
+
+        /* Lang Switcher Fix */
+        .lang-switcher button {
+            font-size: 20px;
+            margin: 0 4px;
+            border: none;
+            background: none;
+            cursor: pointer;
+            opacity: 0.5;
+        }
+
+        .lang-switcher button.active {
+            opacity: 1;
+            transform: scale(1.2);
+        }
+    </style>
+</head>
+
+<body>
+    <header class="site-header">
+        <div class="container">
+            <div class="brand">
+                <span class="logo">🎮</span>
+                <span data-i18n="gamePage.title">Oyunlar</span>
+            </div>
+            <nav>
+                <a href="index.html">🏠 <span data-i18n="nav.home">Beranda</span></a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="hero">
+            <h1 data-i18n="gamePage.heroTitle">Küçük Aşk Oyunları 💖</h1>
+            <p data-i18n="gamePage.heroText">Sadece senin için hazırlanmış...</p>
+        </div>
+
+        <div class="game-grid">
+            <!-- Game 1 Launcher -->
+            <div class="game-launcher" onclick="openGame(1)">
+                <div class="game-icon">💗</div>
+                <h3 data-i18n="games.g1.title">Beni Ne Kadar Seviyorsun?</h3>
+                <p data-i18n="games.g1.desc">...</p>
+                <button class="btn" data-i18n="gamePage.playBtn">Oyna ▶️</button>
+            </div>
+
+            <!-- Game 2 Launcher -->
+            <div class="game-launcher" onclick="openGame(2)">
+                <div class="game-icon">🥰</div>
+                <h3 data-i18n="games.g2.title">Dürüstlük Testi</h3>
+                <p data-i18n="games.g2.desc">...</p>
+                <button class="btn" data-i18n="gamePage.playBtn">Oyna ▶️</button>
+            </div>
+
+            <!-- Game 4 Launcher -->
+            <div class="game-launcher" onclick="openGame(4)">
+                <div class="game-icon">🎰</div>
+                <h3 data-i18n="games.g4.title">Mesaj Makinesi</h3>
+                <p data-i18n="games.g4.desc">...</p>
+                <button class="btn" data-i18n="gamePage.playBtn">Oyna ▶️</button>
+            </div>
+
+            <!-- Game 5 Launcher -->
+            <div class="game-launcher" onclick="openGame(5)">
+                <div class="game-icon">🔓</div>
+                <h3 data-i18n="games.g5.title">Kalp Hackleme</h3>
+                <p data-i18n="games.g5.desc">...</p>
+                <button class="btn" data-i18n="gamePage.playBtn">Oyna ▶️</button>
+            </div>
+
+            <!-- Game 6 Launcher -->
+            <div class="game-launcher" onclick="openGame(6)">
+                <div class="game-icon">⏳</div>
+                <h3 data-i18n="games.g6.title">Gelecek Simülasyonu</h3>
+                <p data-i18n="games.g6.desc">...</p>
+                <button class="btn" data-i18n="gamePage.playBtn">Oyna ▶️</button>
+            </div>
+
+            <!-- Game 7 Launcher -->
+            <div class="game-launcher" onclick="openGame(7)">
+                <div class="game-icon">🕰️</div>
+                <h3 data-i18n="games.g7.title">Ne Zaman?</h3>
+                <p data-i18n="games.g7.desc">...</p>
+                <button class="btn" data-i18n="gamePage.playBtn">Oyna ▶️</button>
+            </div>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container"><small data-i18n="footer.madeWith">Dibuat dengan ❤</small></div>
+    </footer>
+
+    <!-- MODAL HUB -->
+    <div class="modal-overlay" id="modal-overlay">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeGame()">×</button>
+
+            <!-- Game 1 View -->
+            <div id="view-game-1" class="game-view">
+                <h2 data-i18n="games.g1.q">Beni ne kadar seviyorsun?</h2>
+                <div id="heart-container">
+                    <div class="big-heart">💗</div>
+                </div>
+                <div style="display:flex; gap:10px; flex-wrap:wrap; justify-content:center;">
+                    <button class="btn" onclick="game1Choose('opt1')" data-i18n="games.g1.opt1">Çok</button>
+                    <button class="btn" onclick="game1Choose('opt2')" data-i18n="games.g1.opt2">Çok çok</button>
+                    <button class="btn" onclick="game1Choose('opt3')" data-i18n="games.g1.opt3">Tarifsiz</button>
+                </div>
+            </div>
+
+            <!-- Game 2 View -->
+            <div id="view-game-2" class="game-view">
+                <h2 data-i18n="games.g2.q">Beni seviyor musun?</h2>
+                <p id="game2-message" style="font-size:18px; min-height:24px; margin-bottom:20px;">...</p>
+                <div id="game2-buttons"
+                    style="display:flex; gap:20px; align-items:center; justify-content:center; flex-wrap:wrap; transition:all 0.3s ease;">
+                    <button id="btn-yes" class="btn"
+                        style="background:var(--primary); transition:all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);"
+                        onclick="game2Yes()" data-i18n="games.g2.yes">Evet</button>
+                    <button id="btn-unsure" class="btn" style="background:var(--muted); opacity:0.7"
+                        onclick="game2Unsure()" data-i18n="games.g2.unsure">Kararsızım</button>
+                </div>
+            </div>
+
+            <!-- Game 4 View -->
+            <div id="view-game-4" class="game-view">
+                <h2 data-i18n="games.g4.instruction">Şansına ne çıkacak?</h2>
+                <div id="rng-display"
+                    style="min-height:80px; font-size:20px; font-style:italic; padding:20px; border:1px solid var(--card-border); border-radius:12px; width:100%; display:grid; place-items:center;">
+                    ...
+                </div>
+                <button class="btn" onclick="game4Spin()" data-i18n="games.g4.spin">Çek</button>
+            </div>
+
+            <!-- Game 5 View -->
+            <div id="view-game-5" class="game-view">
+                <h2 data-i18n="games.g5.title">Kalp Hackleme</h2>
+                <div id="lock-icon" style="font-size:60px; filter:grayscale(1); transition:filter 0.5s">🔒❤️</div>
+                <p id="hack-hint" data-i18n="games.g5.hint">İpucu...</p>
+                <div style="display:flex; gap:8px; width:100%;">
+                    <input type="text" id="hack-input" style="flex:1; padding:12px; border-radius:8px; border:none;"
+                        data-i18n="games.g5.placeholder">
+                    <button class="btn" onclick="game5Check()" data-i18n="games.g5.check">Dene</button>
+                </div>
+            </div>
+
+            <!-- Game 6 View -->
+            <div id="view-game-6" class="game-view">
+                <h2 data-i18n="games.g6.title">Gelecek Simülasyonu</h2>
+                <div id="sim-content" style="width:100%;">
+                    <!-- Content injected by JS -->
+                    <button class="btn" onclick="initGame6()" data-i18n="games.g3.start">Başlat</button>
+                </div>
+            </div>
+
+            <!-- Game 7 View -->
+            <div id="view-game-7" class="game-view">
+                <h2 data-i18n="games.g7.q">Ne zaman özleyeceksin?</h2>
+                <div id="game7-options" style="width:100%; display:flex; flex-direction:column; gap:10px;">
+                    <button class="btn" onclick="game7Choose(1)" data-i18n="games.g7.opt1">3 saat</button>
+                    <button class="btn" onclick="game7Choose(2)" data-i18n="games.g7.opt2">Akşam</button>
+                    <button class="btn" onclick="game7Choose(3)" data-i18n="games.g7.opt3">Hemen</button>
+                </div>
+                <div id="game7-result"
+                    style="display:none; font-size:20px; color:var(--primary); margin-top:20px; line-height:1.5;"></div>
+            </div>
+        </div>
+
+    </div>
+    </div>
+
+    <script src="translations.js"></script>
+    <script src="i18n.js"></script>
+    <script src="romantic_games.js"></script>
+</body>
+
+</html>

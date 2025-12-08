@@ -1,90 +1,97 @@
 <!doctype html>
 <html lang="id">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Rencana Masa Depan</title>
+  <title data-i18n="future.title">Rencana Masa Depan</title>
   <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
   <header class="site-header">
     <div class="container">
-      <div class="brand"><span class="logo">✨</span><span>Rencana Masa Depan Kita</span></div>
+      <div class="brand"><span class="logo">✨</span><span data-i18n="future.brand">Rencana Masa Depan Kita</span></div>
       <nav>
-        <a href="index.html">🏠 Beranda</a>
-        <a href="letter.html">💌 Surat</a>
-        <a href="map.html">🌍 Peta</a>
+        <a href="index.html">🏠 <span data-i18n="nav.home">Beranda</span></a>
+        <a href="letter.html">💌 <span data-i18n="nav.letter">Surat</span></a>
+        <a href="map.html">🌍 <span data-i18n="nav.map">Peta</span></a>
       </nav>
     </div>
   </header>
   <main class="container future-section">
     <section class="card">
-      <h2>Papan Impian</h2>
+      <h2 data-i18n="future.h2">Papan Impian</h2>
       <div class="timeline">
-        
+
         <div class="timeline-item">
           <div class="dot"></div>
           <div class="bubble">
-            <span class="badge">Impian Besar</span>
-            <p>🌍 Melihat negara baru bersama.</p>
+            <span class="badge" data-i18n="future.badges.bigDream">Impian Besar</span>
+            <p data-i18n="future.items.newCountry">🌍 Melihat negara baru bersama.</p>
           </div>
         </div>
-        
+
         <div class="timeline-item">
           <div class="dot"></div>
           <div class="bubble">
-            <span class="badge">Kebahagiaan Kecil</span>
-            <p>🍰 Kencan manis dan jalan-jalan malam.</p>
+            <span class="badge" data-i18n="future.badges.smallJoy">Kebahagiaan Kecil</span>
+            <p data-i18n="future.items.sweetDate">🍰 Kencan manis dan jalan-jalan malam.</p>
           </div>
         </div>
-        
+
         <div class="timeline-item">
           <div class="dot"></div>
           <div class="bubble">
-            <span class="badge">Kejutan</span>
-            <p>🎁 Surat dan hadiah kecil untuk satu sama lain.</p>
+            <span class="badge" data-i18n="future.badges.surprise">Kejutan</span>
+            <p data-i18n="future.items.gifts">🎁 Surat dan hadiah kecil untuk satu sama lain.</p>
           </div>
         </div>
-        
+
         <div class="timeline-item">
           <div class="dot"></div>
           <div class="bubble">
-            <span class="badge">Petualangan</span>
-            <p>🏞️ Berkemah di gunung → berbincang di bawah bintang.</p>
+            <span class="badge" data-i18n="future.badges.adventure">Petualangan</span>
+            <p data-i18n="future.items.camping">🏞️ Berkemah di gunung → berbincang di bawah bintang.</p>
           </div>
         </div>
-        
+
         <div class="timeline-item">
           <div class="dot"></div>
           <div class="bubble">
-            <span class="badge">Seni</span>
-            <p>🎨 Melukis atau membuat kerajinan tangan bersama → lalu saling memberi hadiah.</p>
+            <span class="badge" data-i18n="future.badges.art">Seni</span>
+            <p data-i18n="future.items.painting">🎨 Melukis atau membuat kerajinan tangan bersama → lalu saling memberi
+              hadiah.</p>
           </div>
         </div>
-        
+
         <div class="timeline-item">
           <div class="dot"></div>
           <div class="bubble">
-            <span class="badge">Musik</span>
-            <p>🎶 Membuat dan mendengarkan daftar lagu bersama → biarkan setiap lagu menjadi kenangan kita.</p>
+            <span class="badge" data-i18n="future.badges.music">Musik</span>
+            <p data-i18n="future.items.playlist">🎶 Membuat dan mendengarkan daftar lagu bersama → biarkan setiap lagu
+              menjadi kenangan kita.</p>
           </div>
         </div>
-        
+
         <div class="timeline-item">
           <div class="dot"></div>
           <div class="bubble">
-            <span class="badge">Impian</span>
-            <p>🚀 Menatap langit → membuat permintaan pada bintang-bintang.</p>
+            <span class="badge" data-i18n="future.badges.bigDream">Impian</span>
+            <p data-i18n="future.items.stargazing">🚀 Menatap langit → membuat permintaan pada bintang-bintang.</p>
           </div>
         </div>
-        
+
       </div>
     </section>
   </main>
   <footer class="site-footer">
     <div class="container">
-      <a href="index.html">⬅️ Beranda</a>
+      <a href="index.html" data-i18n="future.back">⬅️ Beranda</a>
     </div>
   </footer>
+  <script src="translations.js"></script>
+  <script src="i18n.js"></script>
 </body>
+
 </html>

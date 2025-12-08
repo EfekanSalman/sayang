@@ -1,25 +1,30 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Peta</title>
+  <title data-i18n="map.title">Peta</title>
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+
 </head>
+
 <body>
   <header class="site-header">
     <div class="container">
-      <div class="brand"><span class="logo">🌍</span><span>Peta</span></div>
+      <div class="brand"><span class="logo">🌍</span><span data-i18n="map.brand">Peta</span></div>
       <nav>
-        <a href="index.html">🏠 Beranda</a>
-        <a href="letter.html">💌 Surat</a>
+        <a href="index.html">🏠 <span data-i18n="nav.home">Beranda</span></a>
+        <a href="letter.html">💌 <span data-i18n="nav.letter">Surat</span></a>
       </nav>
     </div>
   </header>
   <main class="container">
     <div class="card map-ui">
       <div class="map-header">
-        <div class="distance-chip">Istanbul ⇄ Palu • 14,311 km</div>
+        <div class="distance-chip" data-i18n="map.distance">Istanbul ⇄ Palu • 14,311 km</div>
         <div class="scale-bar" aria-hidden="true"></div>
       </div>
       <div class="map-controls">
@@ -27,49 +32,20 @@
         <button class="control-btn" id="zoomOut">－</button>
       </div>
       <div class="compass"><span>U</span></div>
-      <svg id="map" width="500" height="300" viewBox="0 0 500 300">
-        <defs>
-          <linearGradient id="road" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stop-color="#94a3b8"/>
-            <stop offset="100%" stop-color="#f472b6"/>
-          </linearGradient>
-          <radialGradient id="haloBlue" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.9"/>
-            <stop offset="100%" stop-color="#38bdf8" stop-opacity="0"/>
-          </radialGradient>
-          <radialGradient id="haloPink" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stop-color="#f472b6" stop-opacity="0.9"/>
-            <stop offset="100%" stop-color="#f472b6" stop-opacity="0"/>
-          </radialGradient>
-        </defs>
-        <rect x="0" y="0" width="500" height="300" fill="#0b1224"/>
-        <g opacity="0.4">
-          <rect x="20" y="30" width="100" height="60" fill="#1e293b" rx="6"/>
-          <rect x="140" y="50" width="120" height="40" fill="#1e293b" rx="6"/>
-          <rect x="300" y="40" width="160" height="70" fill="#1e293b" rx="6"/>
-          <rect x="60" y="150" width="140" height="80" fill="#1e293b" rx="6"/>
-          <rect x="260" y="170" width="200" height="90" fill="#1e293b" rx="6"/>
-        </g>
-        <g id="markers">
-          <circle class="marker istanbul" cx="100" cy="150" r="12" fill="url(#haloBlue)" opacity="0.4"></circle>
-          <circle class="marker palu" cx="400" cy="200" r="12" fill="url(#haloPink)" opacity="0.4"></circle>
-          <circle cx="100" cy="150" r="8" fill="#38bdf8"></circle>
-          <text x="100" y="140" fill="#e2e8f0">Istanbul</text>
-          <circle cx="400" cy="200" r="8" fill="#f472b6"></circle>
-          <text x="400" y="190" fill="#e2e8f0">Palu</text>
-        </g>
-        <path id="route" d="M100 150 C 180 100, 320 220, 400 200" stroke="url(#road)" stroke-width="3" fill="none" stroke-dasharray="6 10" stroke-linecap="round"/>
-        <text id="kmLabel" x="250" y="120" fill="#a3adc2" text-anchor="middle">14,311 km</text>
-        <text id="dirLabel" x="250" y="140" fill="#a3adc2" text-anchor="middle">BL → TG</text> <text id="plane" x="110" y="145">✈️</text>
-      </svg>
+      <div id="map" class="leaflet-map-container" style="height: 400px; border-radius: 12px;"></div>
       <div id="mapTip" class="map-tooltip"></div>
     </div>
   </main>
   <footer class="site-footer">
     <div class="container">
-      <small>Istanbul ⇄ Palu</small>
+      <small data-i18n="footer.location">Istanbul ⇄ Palu</small>
     </div>
   </footer>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
   <script src="script.js"></script>
+  <script src="translations.js"></script>
+  <script src="i18n.js"></script>
 </body>
+
 </html>

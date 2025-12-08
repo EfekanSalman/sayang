@@ -1,18 +1,20 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Surat Digital</title>
+  <title data-i18n="letter.title">Surat Digital</title>
   <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
   <header class="site-header">
     <div class="container">
-      <div class="brand"><span class="logo">💖</span><span>Untukmu</span></div>
+      <div class="brand"><span class="logo">💖</span><span data-i18n="letter.brand">Untukmu</span></div>
       <nav>
-        <a href="index.html">🏠 Beranda</a>
-        <a href="map.html">🌍 Peta</a>
+        <a href="index.html">🏠 <span data-i18n="nav.home">Beranda</span></a>
+        <a href="map.html">🌍 <span data-i18n="nav.map">Peta</span></a>
       </nav>
     </div>
   </header>
@@ -23,25 +25,85 @@
         <div class="pocket"></div>
         <div class="seal">💗</div>
         <div class="letter paper paper-dark ruled handwriting">
-          <div class="postal-stamp"><div class="city">ISTANBUL</div><span>POST • AIR MAIL</span></div>
-          <div class="stamp">✈️ Istanbul → Palu</div>
-          <h2>Sayang ❤️</h2>
-          <p>Meskipun terpisah jarak, hatiku selalu bersamamu—setiap matahari terbit, setiap lagu mengingatkanku padamu.</p>
+          <div class="postal-stamp">
+            <div class="city" data-i18n="letter.stampCity">ISTANBUL</div><span data-i18n="letter.stampType">POST • AIR
+              MAIL</span>
+          </div>
+          <div class="stamp" data-i18n="letter.stampRoute">✈️ Istanbul → Palu</div>
+          <h2 data-i18n="letter.greeting">Sayang ❤️</h2>
+          <p data-i18n="letter.p1">Meskipun terpisah jarak, hatiku selalu bersamamu—setiap matahari terbit, setiap lagu
+            mengingatkanku padamu.</p>
           <div class="heart-divider"></div>
-          <p>Suatu hari, Istanbul dan Palu bukan hanya akan menjadi titik di peta, tetapi tempat yang sama di mana kita berdiri bersama, jari-jari saling bertautan.</p>
+          <p data-i18n="letter.p2">Suatu hari, Istanbul dan Palu bukan hanya akan menjadi titik di peta, tetapi tempat
+            yang sama di mana kita berdiri bersama, jari-jari saling bertautan.</p>
           <ul class="promise-list">
-            <li>Kau tertawa, dan aku akan menghiasi dunia dengan mawar.</li>
-            <li>Kita akan berjalan di bawah hujan, dan menari di bawah mentari.</li>
-            <li>Kita akan memperkecil setiap jarak dengan hati kita.</li>
+            <li data-i18n="letter.check1">Kau tertawa, dan aku akan menghiasi dunia dengan mawar.</li>
+            <li data-i18n="letter.check2">Kita akan berjalan di bawah hujan, dan menari di bawah mentari.</li>
+            <li data-i18n="letter.check3">Kita akan memperkecil setiap jarak dengan hati kita.</li>
           </ul>
-          <p class="ps">P.S. Dalam surat berikutnya, aku akan menulis tentang saat pertama aku melihatmu.</p>
-          <p class="signature">— Selalu milikmu</p>
+          <p class="ps" data-i18n="letter.ps">P.S. Dalam surat berikutnya, aku akan menulis tentang saat pertama aku
+            melihatmu.</p>
+          <p class="signature" data-i18n="letter.signature">— Selalu milikmu</p>
         </div>
       </div>
-      <p class="center"><button class="btn" onclick="document.getElementById('envelope').classList.toggle('open')">Buka / Tutup ✉️</button></p>
+      <p class="center"><button class="btn" onclick="document.getElementById('envelope').classList.toggle('open')"
+          data-i18n="letter.btnToggle">Buka / Tutup ✉️</button></p>
+    </div>
+
+    <!-- Open When Section -->
+    <section id="open-when-section" style="margin-top: 40px; text-align: center;">
+      <h2 data-i18n="openWhen.title" style="margin-bottom: 24px; color: var(--primary);">Buka Saat... 💌</h2>
+      <div class="open-when-grid">
+
+        <!-- Sad -->
+        <div class="mini-envelope" onclick="openLetter('sad')">
+          <div class="mini-flap"></div>
+          <div class="mini-seal">😢</div>
+          <div class="mini-label" data-i18n="openWhen.sad.label">Üzgün Olduğunda</div>
+        </div>
+
+        <!-- Miss You -->
+        <div class="mini-envelope" onclick="openLetter('miss')">
+          <div class="mini-flap"></div>
+          <div class="mini-seal">🥺</div>
+          <div class="mini-label" data-i18n="openWhen.miss.label">Beni Özlediğinde</div>
+        </div>
+
+        <!-- Fight -->
+        <div class="mini-envelope" onclick="openLetter('fight')">
+          <div class="mini-flap"></div>
+          <div class="mini-seal">😠</div>
+          <div class="mini-label" data-i18n="openWhen.fight.label">Kavga Ettiğimizde</div>
+        </div>
+
+        <!-- Sleep -->
+        <div class="mini-envelope" onclick="openLetter('sleep')">
+          <div class="mini-flap"></div>
+          <div class="mini-seal">😴</div>
+          <div class="mini-label" data-i18n="openWhen.sleep.label">Uyumadan Önce</div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Modal for Open When Letters -->
+    <div id="letter-modal-overlay" class="modal-overlay">
+      <div class="modal-content letter-modal-content">
+        <button class="close-modal" onclick="closeLetterModal()">×</button>
+        <div class="paper paper-dark rules handwriting">
+          <h2 id="modal-title">...</h2>
+          <div id="modal-body">...</div>
+          <p class="signature" data-i18n="letter.signature">— Selalu milikmu</p>
+        </div>
+      </div>
     </div>
   </main>
-  <footer class="site-footer"><div class="container"><small>Dibuat dengan ❤</small></div></footer>
+  <footer class="site-footer">
+    <div class="container"><small data-i18n="footer.madeWith">Dibuat dengan ❤</small></div>
+  </footer>
   <script src="script.js"></script>
+  <script src="translations.js"></script>
+  <script src="i18n.js"></script>
 </body>
+
 </html>

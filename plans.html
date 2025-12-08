@@ -1,145 +1,192 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Rencana Masa Depan</title>
+  <title data-i18n="plans.title">Rencana Masa Depan</title>
   <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
   <header class="site-header">
     <div class="container">
-      <div class="brand"><span class="logo">✨</span><span>Rencana Masa Depan</span></div>
+      <div class="brand"><span class="logo">✨</span><span data-i18n="plans.brand">Rencana Masa Depan</span></div>
       <nav>
-        <a href="index.html">🏠 Beranda</a>
-        <a href="letter.html">💌 Surat</a>
-        <a href="map.html">🌍 Peta</a>
+        <a href="index.html">🏠 <span data-i18n="nav.home">Beranda</span></a>
+        <a href="letter.html">💌 <span data-i18n="nav.letter">Surat</span></a>
+        <a href="map.html">🌍 <span data-i18n="nav.map">Peta</span></a>
       </nav>
     </div>
   </header>
   <main class="container">
     <section class="card">
-      <h2>Rencana Masa Depan Kita ✨</h2>
+      <h2 data-i18n="plans.h2">Rencana Masa Depan Kita ✨</h2>
+
+      <!-- Future Tree Visualization -->
+      <div id="future-tree-container" class="tree-container">
+        <div class="tree">
+          <!-- Trunk -->
+          <div class="trunk"></div>
+
+          <!-- Leaves/Fruits (Goals) -->
+          <!-- Positioned absolutely or flex relative to tree -->
+
+          <!-- Goal 1 -->
+          <div class="leaf goal-leaf" style="top: 20px; left: 50%;" data-tooltip="plans.items.bali">
+            🍎
+          </div>
+
+          <!-- Goal 2 -->
+          <div class="leaf goal-leaf" style="top: 80px; left: 30%;" data-tooltip="plans.items.home">
+            🏠
+          </div>
+
+          <!-- Goal 3 -->
+          <div class="leaf goal-leaf" style="top: 60px; left: 70%;" data-tooltip="plans.items.travel">
+            ✈️
+          </div>
+
+          <!-- Goal 4 -->
+          <div class="leaf goal-leaf" style="top: 150px; left: 40%;" data-tooltip="plans.items.wedding">
+            💍
+          </div>
+
+          <!-- Goal 5 -->
+          <div class="leaf goal-leaf" style="top: 120px; left: 60%;" data-tooltip="plans.items.family">
+            👨‍👩‍👧‍👦
+          </div>
+
+          <div class="foliage"></div>
+        </div>
+        <p class="center note" style="margin-top:20px;" data-i18n="plans.treeHint">Klik buah/daun untuk melihat impian
+          kita.</p>
+        <div id="tree-tooltip" class="tree-tooltip">...</div>
+      </div>
+
       <div class="timeline">
-        
+
         <div class="timeline-item">
           <div class="dot"></div>
           <div class="bubble">
-            <span class="badge">Dekat</span>
-            <span class="badge">Bersama</span>
-            <p>🏡 Kunjungi desamu bersama — bertemu keluarga.</p>
+            <span class="badge" data-i18n="plans.badges.close">Dekat</span>
+            <span class="badge" data-i18n="plans.badges.together">Bersama</span>
+            <p data-i18n="plans.items.visitVillage">🏡 Kunjungi desamu bersama — bertemu keluarga.</p>
           </div>
         </div>
-        
+
         <div class="timeline-item">
           <div class="dot"></div>
           <div class="bubble">
-            <span class="badge">Romantis</span>
-            <p>🚤 Tur Bosporus Istanbul — berjalan di bawah cahaya malam.</p>
+            <span class="badge" data-i18n="plans.badges.romantic">Romantis</span>
+            <p data-i18n="plans.items.bosphorus">🚤 Tur Bosporus Istanbul — berjalan di bawah cahaya malam.</p>
           </div>
         </div>
-        
+
         <div class="timeline-item">
           <div class="dot"></div>
           <div class="bubble">
-            <span class="badge">Hangat</span>
-            <p>☕ Membuat teh bersama — duduk di kafe kecil.</p>
+            <span class="badge" data-i18n="plans.badges.warm">Hangat</span>
+            <p data-i18n="plans.items.tea">☕ Membuat teh bersama — duduk di kafe kecil.</p>
           </div>
         </div>
-        
+
         <div class="timeline-item">
           <div class="dot"></div>
           <div class="bubble">
-            <span class="badge">Impian</span>
-            <p>🌅 Saksikan matahari terbenam di Bali — foto kita berdua dalam satu bingkai.</p>
+            <span class="badge" data-i18n="plans.badges.dream">Impian</span>
+            <p data-i18n="plans.items.bali">🌅 Saksikan matahari terbenam di Bali — foto kita berdua dalam satu bingkai.
+            </p>
           </div>
         </div>
-        
+
         <div class="timeline-item">
           <div class="dot"></div>
           <div class="bubble">
-            <span class="badge">Hati</span>
-            <p>🤗 Pelukan nyata — berpelukan erat dan lama.</p>
+            <span class="badge" data-i18n="plans.badges.heart">Hati</span>
+            <p data-i18n="plans.items.hug">🤗 Pelukan nyata — berpelukan erat dan lama.</p>
           </div>
         </div>
-        
+
         <div class="timeline-item">
           <div class="dot"></div>
           <div class="bubble">
-            <span class="badge">Romantis</span>
-            <p>🚤 Tur Bosporus → dengan feri saat matahari terbenam atau di bawah cahaya malam.</p>
+            <span class="badge" data-i18n="plans.badges.romantic">Romantis</span>
+            <p data-i18n="plans.items.ferry">🚤 Tur Bosporus → dengan feri saat matahari terbenam atau di bawah cahaya
+              malam.</p>
           </div>
         </div>
-        
+
         <div class="timeline-item">
           <div class="dot"></div>
           <div class="bubble">
-            <span class="badge">Hiburan</span>
-            <p>🎡 Taman bermain / hiburan ringan → bersenang-senang bersama.</p>
+            <span class="badge" data-i18n="plans.badges.fun">Hiburan</span>
+            <p data-i18n="plans.items.funPark">🎡 Taman bermain / hiburan ringan → bersenang-senang bersama.</p>
           </div>
         </div>
-        
+
         <div class="timeline-item">
           <div class="dot"></div>
           <div class="bubble">
-            <span class="badge">Cita Rasa</span>
-            <p>🍲 Makan masakanmu → menyiapkan bersama.</p>
+            <span class="badge" data-i18n="plans.badges.taste">Cita Rasa</span>
+            <p data-i18n="plans.items.cooking">🍲 Makan masakanmu → menyiapkan bersama.</p>
           </div>
         </div>
-        
+
         <div class="timeline-item">
           <div class="dot"></div>
           <div class="bubble">
-            <span class="badge">Keluarga</span>
-            <p>🏡 Kunjungan keluarga di desamu → bertemu dengan keluarganya.</p>
+            <span class="badge" data-i18n="plans.badges.family">Keluarga</span>
+            <p data-i18n="plans.items.familyVisit">🏡 Kunjungan keluarga di desamu → bertemu dengan keluarganya.</p>
           </div>
         </div>
-        
+
         <div class="timeline-item">
           <div class="dot"></div>
           <div class="bubble">
-            <span class="badge">Alam</span>
-            <p>🌅 Berjalan di pantai Palu → saat matahari terbenam.</p>
+            <span class="badge" data-i18n="plans.badges.nature">Alam</span>
+            <p data-i18n="plans.items.beachWalk">🌅 Berjalan di pantai Palu → saat matahari terbenam.</p>
           </div>
         </div>
-        
+
         <div class="timeline-item">
           <div class="dot"></div>
           <div class="bubble">
-            <span class="badge">Budaya</span>
-            <p>🎇 Festival tradisional / jalan-jalan di pasar → menikmati budaya Indonesia bersama.</p>
+            <span class="badge" data-i18n="plans.badges.culture">Budaya</span>
+            <p data-i18n="plans.items.tradition">🎇 Festival tradisional / jalan-jalan di pasar → menikmati budaya
+              Indonesia bersama.</p>
           </div>
         </div>
-        
+
         <div class="timeline-item">
           <div class="dot"></div>
           <div class="bubble">
-            <span class="badge">Jauh</span>
-            <p>✈️ Saling mengunjungi.</p>
+            <span class="badge" data-i18n="plans.badges.far">Jauh</span>
+            <p data-i18n="plans.items.travel">✈️ Saling mengunjungi.</p>
           </div>
         </div>
-        
+
         <div class="timeline-item">
           <div class="dot"></div>
           <div class="bubble">
-            <span class="badge">Perayaan</span>
-            <p>🎂 Merayakan ulang tahun atau hari jadi bersama.</p>
+            <span class="badge" data-i18n="plans.badges.celebration">Perayaan</span>
+            <p data-i18n="plans.items.birthday">🎂 Merayakan ulang tahun atau hari jadi bersama.</p>
           </div>
         </div>
-        
+
         <div class="timeline-item">
           <div class="dot"></div>
           <div class="bubble">
-            <span class="badge">Kenangan</span>
-            <p>📸 Mengambil foto nyata → bingkai nyata yang pertama.</p>
+            <span class="badge" data-i18n="plans.badges.memory">Kenangan</span>
+            <p data-i18n="plans.items.photo">📸 Mengambil foto nyata → bingkai nyata yang pertama.</p>
           </div>
         </div>
-        
+
         <div class="timeline-item">
           <div class="dot"></div>
           <div class="bubble">
-            <span class="badge">Impian</span>
-            <p>🌅 Matahari terbenam di Bali → rencana impian ikonik.</p>
+            <span class="badge" data-i18n="plans.badges.dream">Impian</span>
+            <p data-i18n="plans.items.baliDream">🌅 Matahari terbenam di Bali → rencana impian ikonik.</p>
           </div>
         </div>
 
@@ -148,8 +195,11 @@
   </main>
   <footer class="site-footer">
     <div class="container">
-      <small>Bersama menuju hari esok yang indah</small>
+      <small data-i18n="footer.beautifulTomorrow">Bersama menuju hari esok yang indah</small>
     </div>
   </footer>
+  <script src="translations.js"></script>
+  <script src="i18n.js"></script>
 </body>
+
 </html>
