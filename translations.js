@@ -29,6 +29,20 @@ const translations = {
                 final: "Biliyordum! ❤️",
                 warning: "Önce cevap vermelisin! 😈"
             },
+            flowerPage: {
+                title: "Ay Çiçeği",
+                desc: "Ay ışığı, karanlıkta saklı olan güzelliği her zaman bulur.",
+                instruction: "Ay'ı hareket ettirerek çiçeği uyandır..."
+            },
+            garden: {
+                title: "Aşk Bahçemiz",
+                desc: "Aşkımız bir çiçek gibidir; ilgi, sabır ve sevgiyle büyür.",
+                waterBtn: "Sula 💧",
+                nextWater: "Bir sonraki sulama için yarını bekle...",
+                congrats: "Tebrikler! Çiçeğin tam kapasite açtı! ✨",
+                finalNote: "Sevmek, beklemeyi bilmektir. Sen bu çiçeği sabırla yaşatırken, aslında aşkımızı da besliyorsun. Unutma ki en görkemli ağaçlar, en sessiz tohumlardan doğar. Bizim sabrımız, o ağacın sarsılmaz gövdesi olacak. ❤️",
+                levelLabel: "Seviye"
+            },
             g4: {
                 title: "Mesaj Makinesi",
                 desc: "Bugünün şanslı mesajı ne?",
@@ -74,6 +88,32 @@ const translations = {
                 result1: "Peki ama ben seni şuanda da özlüyorum ve en kısa sürede de beni özlersin çünkü ben seni çok özledim sesini gülüşünü gözlerini...",
                 result2: "Bu kadar uzun süre sensiz dayanamam, özle beni. Sensizlik bana büyük bir acı.",
                 result3: "Yeeyyy bende seni çok özlemiştim sevgilim!"
+            },
+            g8: {
+                title: "Kalp Yakalama",
+                desc: "Düşen aşkları topla!",
+                score: "Puan",
+                gameOver: "Oyun Bitti!",
+                restart: "Tekrar Dene"
+            },
+            g9: {
+                title: "Aşk Yolu",
+                desc: "İstanbul'dan Palu'ya koş!",
+                start: "Koşmaya Başla",
+                gameOver: "Yoruldun mu? ❤️",
+                success: "Kavuştuk! 😍"
+            },
+            g10: {
+                title: "Flappy Heart",
+                desc: "Kalbi engellerden koru!",
+                best: "En İyi Skor"
+            },
+            wishingStar: {
+                trigger: "Bir yıldız kaydı! Tıkla ve dilek tut ✨",
+                title: "2026 Dileğin Nedir?",
+                placeholder: "Buraya bir hayalini yaz...",
+                submit: "Yıldıza Gönder",
+                success: "Dileğin gökyüzüne ulaştı. Mutlaka gerçek olacak 💖"
             }
         },
         nav: {
@@ -108,6 +148,38 @@ const translations = {
             waningGibbous: "Azalan Şişkin Ay",
             lastQuarter: "Son Dördün",
             waningCrescent: "Son Hilal"
+        },
+        reasonsJar: {
+            title: "Aşk Kavanozu",
+            desc: "Her tıkladığında seni neden sevdiğime dair bir neden çıkacak...",
+            clickMe: "Kavanoza tıkla! ✨",
+            reasons: [
+                "Gülüşün tüm dünyamı aydınlatıyor.",
+                "En kötü günümde bile beni güldürebiliyorsun.",
+                "Kalbimin ritmini sadece sen değiştirebiliyorsun.",
+                "Mesafeler olsa da varlığını hep yanımda hissediyorum.",
+                "Sesin dünyadaki en huzurlu melodi.",
+                "Bana olan güvenin beni daha güçlü kılıyor.",
+                "Küçük detayları fark etmen çok tatlı.",
+                "Seninle geleceğe dair hayaller kurmayı seviyorum.",
+                "Gözlerindeki o derinliği seviyorum.",
+                "Beni her halimle kabul etmen çok değerli.",
+                "Dünyanın en güzel kalbine sahipsin.",
+                "Seninle sessizce oturmak bile çok keyifli.",
+                "Bana öğrettiğin her şey için teşekkürler.",
+                "Seninleyken kendim olabiliyorum.",
+                "Her sabah senin günaydın mesajınla uyanmak harika.",
+                "İyi ki varsın ve iyi ki benimlesin.",
+                "Hayatımın en güzel tesadüfü sensin.",
+                "Bakışların bende her şeyi unutturuyor.",
+                "Ruhumu anlayan tek kişi sensin.",
+                "Seninle paylaştığımız her an çok kıymetli.",
+                "Zor anlarımda sığındığım limanımsın.",
+                "Geleceğimdeki en güzel detay sensin.",
+                "Dünyayı senin gözlerinden görmeyi seviyorum.",
+                "Beni benden daha çok düşündüğünü biliyorum.",
+                "Sonsuzluğa seninle yürümek istiyorum."
+            ]
         },
         letter: {
             title: "Dijital Mektup",
@@ -295,6 +367,32 @@ const translations = {
                 result1: "Okay, but I miss you right now, and you will miss me very soon because I miss you so much—your voice, your smile, your eyes...",
                 result2: "I can't stand being without you for so long, miss me. Being without you is a great pain.",
                 result3: "Yaaay I missed you too my love! sales"
+            },
+            g8: {
+                title: "Catch the Love",
+                desc: "Catch the falling love!",
+                score: "Score",
+                gameOver: "Game Over!",
+                restart: "Try Again"
+            },
+            g9: {
+                title: "Love Path",
+                desc: "Run from Istanbul to Palu!",
+                start: "Start Running",
+                gameOver: "Are you tired? ❤️",
+                success: "Together at last! 😍"
+            },
+            g10: {
+                title: "Flappy Heart",
+                desc: "Protect the heart!",
+                best: "High Score"
+            },
+            wishingStar: {
+                trigger: "A shooting star! Click and make a wish ✨",
+                title: "What is your 2026 wish?",
+                placeholder: "Write a dream here...",
+                submit: "Send to Star",
+                success: "Your wish reached the sky. It will surely come true 💖"
             }
         },
         nav: {
@@ -329,6 +427,52 @@ const translations = {
             waningGibbous: "Waning Gibbous",
             lastQuarter: "Last Quarter",
             waningCrescent: "Waning Crescent"
+        },
+        flowerPage: {
+            title: "Moon Flower",
+            desc: "Moonlight always finds the beauty hidden in the dark.",
+            instruction: "Move the Moon to wake up the flower..."
+        },
+        garden: {
+            title: "Our Love Garden",
+            desc: "Our love is like a flower; it grows with care, patience, and love.",
+            waterBtn: "Water it 💧",
+            nextWater: "Come back tomorrow for the next watering...",
+            congrats: "Congratulations! Your flower has bloomed fully! ✨",
+            finalNote: "To love is to know how to wait. While you patiently keep this flower alive, you are actually nourishing our love. Remember that the most magnificent trees are born from the quietest seeds. Our patience will be the unshakable trunk of that tree. ❤️",
+            levelLabel: "Level"
+        },
+        reasonsJar: {
+            title: "Love Jar",
+            desc: "Click the jar to see a reason why I love you...",
+            clickMe: "Click the Jar! ✨",
+            reasons: [
+                "Your smile lights up my whole world.",
+                "You can make me laugh even on my worst days.",
+                "Only you can change the rhythm of my heart.",
+                "Even with distances, I always feel your presence.",
+                "Your voice is the most peaceful melody in the world.",
+                "Your trust in me makes me stronger.",
+                "It's so sweet how you notice small details.",
+                "I love dreaming about the future with you.",
+                "I love the depth in your eyes.",
+                "Your acceptance of me as I am is so precious.",
+                "You have the most beautiful heart in the world.",
+                "Even just sitting silently with you is delightful.",
+                "Thanks for everything you've taught me.",
+                "I can be myself when I'm with you.",
+                "Waking up to your good morning message is wonderful.",
+                "I'm so glad you exist and that you're mine.",
+                "You are the most beautiful coincidence of my life.",
+                "Your gaze makes me forget everything else.",
+                "You are the only one who truly understands my soul.",
+                "Every moment we share is very precious.",
+                "You are my safe harbor in difficult times.",
+                "You are the most beautiful detail in my future.",
+                "I love seeing the world through your eyes.",
+                "I know you care about me more than I do.",
+                "I want to walk towards eternity with you."
+            ]
         },
         letter: {
             title: "Digital Letter",
@@ -475,6 +619,20 @@ const translations = {
                 final: "Aku sudah tahu! ❤️",
                 warning: "Kamu harus menjawab dulu! 😈"
             },
+            flowerPage: {
+                title: "Bunga Bulan",
+                desc: "Cahaya bulan selalu menemukan keindahan yang tersembunyi dalam kegelapan.",
+                instruction: "Gerakkan Bulan untuk membangunkan bunga..."
+            },
+            garden: {
+                title: "Taman Cinta Kita",
+                desc: "Cinta kita seperti bunga; ia tumbuh dengan perhatian, kesabaran, dan kasih sayang.",
+                waterBtn: "Siram 💧",
+                nextWater: "Kembali besok untuk penyiraman berikutnya...",
+                congrats: "Selamat! Bungamu telah mekar sepenuhnya! ✨",
+                finalNote: "Mencintai adalah tahu cara menunggu. Saat kau dengan sabar menghidupkan bunga ini, sebenarnya kau sedang memupuk cinta kita. Ingatlah bahwa pohon paling megah lahir dari benih paling sunyi. Kesabaran kita akan menjadi batang pohon yang tak tergoyahkan itu. ❤️",
+                levelLabel: "Level"
+            },
             g4: {
                 title: "Mesin Pesan",
                 desc: "Apa pesan keberuntungan hari ini?",
@@ -520,6 +678,32 @@ const translations = {
                 result1: "Oke, tapi aku merindukanmu sekarang, dan kamu akan segera merindukanku karena aku sangat merindukanmu—suaramu, senyummu, matamu...",
                 result2: "Aku tak tahan tanpamu begitu lama, rindukan aku. Tanpamu adalah rasa sakit yang hebat.",
                 result3: "Yeeyyy aku juga sangat merindukanmu sayang!"
+            },
+            g8: {
+                title: "Tangkap Cinta",
+                desc: "Tangkap cinta yang jatuh!",
+                score: "Skor",
+                gameOver: "Permainan Berakhir!",
+                restart: "Coba Lagi"
+            },
+            g9: {
+                title: "Jalan Cinta",
+                desc: "Lari dari Istanbul ke Palu!",
+                start: "Mulai Berlari",
+                gameOver: "Apakah kamu lelah? ❤️",
+                success: "Bersama akhirnya! 😍"
+            },
+            g10: {
+                title: "Flappy Heart",
+                desc: "Lindungi hati!",
+                best: "Skor Tertinggi"
+            },
+            wishingStar: {
+                trigger: "Bintang jatuh! Klik dan buat permintaan ✨",
+                title: "Apa harapanmu di 2026?",
+                placeholder: "Tulis impianmu di sini...",
+                submit: "Kirim ke Bintang",
+                success: "Harapanmu sampai ke langit. Pasti akan terwujud 💖"
             }
         },
         nav: {
@@ -554,6 +738,38 @@ const translations = {
             waningGibbous: "Cembung Akhir",
             lastQuarter: "Kuartal Terakhir",
             waningCrescent: "Sabit Akhir"
+        },
+        reasonsJar: {
+            title: "Toples Cinta",
+            desc: "Klik toples ini untuk melihat alasan kenapa aku mencintaimu...",
+            clickMe: "Klik Toples! ✨",
+            reasons: [
+                "Senyummu menerangi seluruh duniaku.",
+                "Kau bisa membuatku tertawa bahkan di hari terburukku.",
+                "Hanya kau yang bisa mengubah ritme jantungku.",
+                "Meskipun ada jarak, aku selalu merasakan kehadiranmu.",
+                "Suaramu adalah melodi paling damai di dunia.",
+                "Kepercayaanmu padaku membuatku lebih kuat.",
+                "Sangat manis bagaimana kau memperhatikan detail kecil.",
+                "Aku suka bermimpi tentang masa depan bersamamu.",
+                "Aku suka kedalaman di matamu.",
+                "Penerimaanmu terhadapku apa adanya sangat berharga.",
+                "Kau memiliki hati yang paling indah di dunia.",
+                "Bahkan hanya duduk diam bersamamu pun menyenangkan.",
+                "Terima kasih atas semua yang telah kau ajarkan padaku.",
+                "Aku bisa menjadi diriku sendiri saat bersamamu.",
+                "Bangun dengan pesan selamat pagi darimu sangat luar biasa.",
+                "Aku sangat senang kau ada dan kau milikku.",
+                "Kau adalah kebetulan terindah dalam hidupku.",
+                "Tatapannmu membuatku melupakan segalanya.",
+                "Kau adalah satu-satunya yang benar-benar memahami jiwaku.",
+                "Setiap momen yang kita lalui sangat berharga.",
+                "Kau adalah pelabuhan amanku di masa sulit.",
+                "Kau adalah detail terindah di masa depanku.",
+                "Aku suka melihat dunia melalui matamu.",
+                "Aku tahu kau peduli padaku lebih dari aku sendiri.",
+                "Aku ingin berjalan menuju keabadian bersamamu."
+            ]
         },
         letter: {
             title: "Surat Digital",

@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title data-i18n="garden.title">Aşk Bahçemiz – 🪴</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            background: linear-gradient(to bottom, #ecfdf5, #d1fae5);
+            min-height: 100vh;
+            color: #064e3b;
+        }
+
+        .garden-scene {
+            position: relative;
+            width: 100%;
+            height: 500px;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            padding-bottom: 50px;
+            background: url('https://www.transparenttextures.com/patterns/pinstriped-suit.png');
+        }
+
+        /* Pot */
+        .pot {
+            position: relative;
+            width: 120px;
+            height: 100px;
+            background: #92400e;
+            clip-path: polygon(0 0, 100% 0, 85% 100%, 15% 100%);
+            z-index: 5;
+            box-shadow: inset 0 10px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .pot::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 15px;
+            background: #78350f;
+        }
+
+        /* Flower */
+        .plant {
+            position: absolute;
+            bottom: 140px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: all 1s ease-in-out;
+        }
+
+        .stem {
+            width: 6px;
+            background: linear-gradient(to top, #065f46, #10b981);
+            border-radius: 3px;
+            transition: height 1s;
+        }
+
+        .leaf {
+            position: absolute;
+            width: 30px;
+            height: 15px;
+            background: #10b981;
+            border-radius: 50% 50% 0 50%;
+            transition: all 1s;
+            opacity: 0;
+        }
+
+        .leaf-left {
+            left: -25px;
+            transform: rotate(-30deg);
+        }
+
+        .leaf-right {
+            right: -25px;
+            transform: rotate(210deg);
+            border-radius: 50% 50% 50% 0;
+        }
+
+        .flower-head {
+            position: relative;
+            width: 0;
+            height: 0;
+            transition: all 1s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+        }
+
+        .petal-garden {
+            position: absolute;
+            width: 30px;
+            height: 50px;
+            background: radial-gradient(circle, #f472b6, #db2777);
+            border-radius: 50%;
+            transform-origin: bottom center;
+        }
+
+        .bud {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: #fcd34d;
+            border-radius: 50%;
+            z-index: 10;
+        }
+
+        /* Watering Can */
+        .watering-can {
+            position: absolute;
+            top: 100px;
+            right: 10%;
+            font-size: 60px;
+            cursor: pointer;
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            user-select: none;
+            z-index: 20;
+        }
+
+        .watering-can.tilting {
+            transform: rotate(-50deg);
+        }
+
+        .droplets {
+            position: absolute;
+            top: 180px;
+            left: 50%;
+            transform: translateX(-80px);
+            /* Align with can spout */
+            pointer-events: none;
+            opacity: 0;
+            z-index: 15;
+            transition: opacity 0.3s;
+        }
+
+        .drop {
+            position: absolute;
+            width: 4px;
+            height: 8px;
+            background: #60a5fa;
+            border-radius: 50%;
+            animation: fall 0.6s linear infinite;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(150px);
+                opacity: 0;
+            }
+        }
+
+        /* Growth Info */
+        .info-card {
+            background: white;
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+            text-align: center;
+            max-width: 400px;
+            margin: 20px auto;
+        }
+
+        #final-note-modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 30px;
+            border-radius: 24px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+            z-index: 100;
+            max-width: 90%;
+            text-align: center;
+            animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        @keyframes popIn {
+            0% {
+                transform: translate(-50%, -50%) scale(0.5);
+                opacity: 0;
+            }
+
+            100% {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 1;
+            }
+        }
+
+        .btn-water {
+            background: #10b981;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+            margin-top: 15px;
+        }
+
+        .btn-water:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 10px;
+            background: #f1f5f9;
+            border-radius: 5px;
+            margin: 15px 0;
+            overflow: hidden;
+        }
+
+        #progress-fill {
+            width: 0%;
+            height: 100%;
+            background: #10b981;
+            transition: width 1s;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="site-header">
+        <div class="container">
+            <div class="brand"><span class="logo">🪴</span><span data-i18n="garden.title">Aşk Bahçemiz</span></div>
+            <nav>
+                <a href="index.html">🏠 <span data-i18n="nav.home">Beranda</span></a>
+                <a href="reasons.html">🏺 <span data-i18n="reasonsJar.title">Aşk Kavanozu</span></a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="garden-scene">
+            <div class="plant" id="plant">
+                <div class="flower-head" id="flower-head">
+                    <div class="petal-garden" style="transform: rotate(0deg)"></div>
+                    <div class="petal-garden" style="transform: rotate(72deg)"></div>
+                    <div class="petal-garden" style="transform: rotate(144deg)"></div>
+                    <div class="petal-garden" style="transform: rotate(216deg)"></div>
+                    <div class="petal-garden" style="transform: rotate(288deg)"></div>
+                    <div class="bud"></div>
+                </div>
+                <div class="leaf leaf-left" id="leaf-1"></div>
+                <div class="leaf leaf-right" id="leaf-2"></div>
+                <div class="leaf leaf-left" id="leaf-3" style="bottom: 40px"></div>
+                <div class="stem" id="stem"></div>
+            </div>
+            <div class="pot"></div>
+
+            <div class="watering-can" id="can" onclick="waterPlant()">🚿</div>
+            <div class="droplets" id="droplets">
+                <div class="drop" style="left: 0; animation-delay: 0s"></div>
+                <div class="drop" style="left: 10px; animation-delay: 0.2s"></div>
+                <div class="drop" style="left: 20px; animation-delay: 0.1s"></div>
+                <div class="drop" style="left: 30px; animation-delay: 0.3s"></div>
+            </div>
+        </div>
+
+        <div class="info-card">
+            <h3 data-i18n="garden.desc">Aşkımız bir çiçek gibidir...</h3>
+            <div class="progress-bar">
+                <div id="progress-fill"></div>
+            </div>
+            <p id="level-text">Seviye: 0/10</p>
+            <button class="btn-water" id="water-btn" onclick="waterPlant()" data-i18n="garden.waterBtn">Sula 💧</button>
+            <p id="status-msg" style="margin-top: 10px; font-size: 0.9rem; color: #64748b;"></p>
+        </div>
+    </main>
+
+    <div id="final-note-modal">
+        <h2 data-i18n="garden.congrats">Tebrikler! ✨</h2>
+        <div class="paper paper-dark rules handwriting" style="margin: 20px 0; padding: 20px;">
+            <p id="note-content" data-i18n="garden.finalNote">...</p>
+        </div>
+        <button class="btn" onclick="document.getElementById('final-note-modal').style.display='none'">❤️</button>
+    </div>
+
+    <script src="translations.js"></script>
+    <script src="i18n.js"></script>
+    <script>
+        let level = parseInt(localStorage.getItem('garden_level')) || 0;
+        let lastWatered = localStorage.getItem('garden_last_watered') || 0;
+
+        const stem = document.getElementById('stem');
+        const flowerHead = document.getElementById('flower-head');
+        const waterBtn = document.getElementById('water-btn');
+        const statusMsg = document.getElementById('status-msg');
+        const progressFill = document.getElementById('progress-fill');
+        const levelText = document.getElementById('level-text');
+
+        function updatePlant() {
+            // Level 0-10 logic
+            const height = 20 + (level * 20);
+            stem.style.height = height + 'px';
+
+            // Show leaves
+            if (level >= 2) document.getElementById('leaf-1').style.opacity = 1;
+            if (level >= 4) document.getElementById('leaf-2').style.opacity = 1;
+            if (level >= 6) document.getElementById('leaf-3').style.opacity = 1;
+
+            // Show and grow flower head
+            if (level >= 8) {
+                flowerHead.style.opacity = 1;
+                const flowerScale = (level - 7) * 0.33; // 8: 0.33, 9: 0.66, 10: 1.0
+                flowerHead.style.transform = `scale(${flowerScale})`;
+                flowerHead.style.width = '60px';
+                flowerHead.style.height = '60px';
+            }
+
+            // Update UI
+            progressFill.style.width = (level * 10) + '%';
+            const levelLabel = typeof getTrans === 'function' ? getTrans('garden.levelLabel') : 'Level';
+            levelText.textContent = `${levelLabel}: ${level}/10`;
+
+            // Check if already watered today
+            const today = new Date().toDateString();
+            if (lastWatered === today && level < 10) {
+                waterBtn.disabled = true;
+                statusMsg.setAttribute('data-i18n', 'garden.nextWater');
+                // Re-init i18n for this element
+                if (window.updateContent) window.updateContent();
+            }
+
+            if (level >= 10) {
+                waterBtn.textContent = "✨ Bloom! ✨";
+                waterBtn.onclick = () => document.getElementById('final-note-modal').style.display = 'block';
+            }
+        }
+
+        function waterPlant(isDemo = false) {
+            const today = new Date().toDateString();
+            if (!isDemo && lastWatered === today && level < 10) return;
+
+            // Animation logic
+            const can = document.getElementById('can');
+            const droplets = document.getElementById('droplets');
+
+            // Move can to plant position
+            can.style.right = 'calc(50% - 60px)';
+            can.style.top = '150px';
+
+            setTimeout(() => {
+                can.classList.add('tilting');
+                droplets.style.opacity = 1;
+            }, 500);
+
+            setTimeout(() => {
+                can.classList.remove('tilting');
+                droplets.style.opacity = 0;
+
+                // Reset can position
+                can.style.right = '10%';
+                can.style.top = '100px';
+
+                if (level < 10) {
+                    level++;
+                    if (!isDemo) {
+                        lastWatered = today;
+                        localStorage.setItem('garden_last_watered', lastWatered);
+                    }
+                    localStorage.setItem('garden_level', level);
+                    updatePlant();
+                }
+
+                if (level === 10) {
+                    confettiBurst();
+                }
+            }, 3000);
+        }
+
+        // Demo Function
+        function runDemo() {
+            if (level >= 10) level = 0; // Reset for demo if full
+            const delay = 1000;
+            const demoInterval = setInterval(() => {
+                if (level < 10) {
+                    waterPlant(true);
+                } else {
+                    clearInterval(demoInterval);
+                }
+            }, 3500);
+        }
+
+        // Simple particle effect for bloom
+        function confettiBurst() {
+            document.getElementById('final-note-modal').style.display = 'block';
+        }
+
+        // Initialize
+        updatePlant();
+    </script>
+
+    <!-- Demo Button (Only for you to test) -->
+    <div style="position: fixed; bottom: 10px; right: 10px; opacity: 0.3;">
+        <button class="btn" style="padding: 5px 10px; font-size: 0.7rem;" onclick="runDemo()">Hızlandırılmış Demo
+            🚀</button>
+    </div>
+</body>
+
+</html>

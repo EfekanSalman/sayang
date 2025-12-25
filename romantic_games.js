@@ -19,6 +19,9 @@ function openGame(id) {
     if (id === 6) initGame6();
     if (id === 2) resetGame2();
     if (id === 7) resetGame7();
+    if (id === 8) initGame8();
+    if (id === 9) initGame9();
+    if (id === 10) initGame10();
 }
 
 function closeGame() {
@@ -30,6 +33,10 @@ function closeGame() {
 
     document.getElementById('modal-overlay').classList.remove('active');
     currentGameId = 0;
+    // Stop any running animations by clearing intervals or flags if needed
+    game8Active = false;
+    game9Active = false;
+    game10Active = false;
 }
 
 // Helpers for translations
@@ -264,4 +271,285 @@ function game7Choose(optIndex) {
     else text = getTrans('games.g7.result3');
 
     result.textContent = text;
+}
+
+/* Common UI Helper */
+function drawGameOver(ctx, canvas, score, best, titleKey) {
+    ctx.fillStyle = 'rgba(15, 23, 42, 0.85)';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    ctx.fillStyle = 'white';
+    ctx.textAlign = 'center';
+
+    ctx.font = 'bold 32px sans-serif';
+    ctx.fillText(getTrans('games.g8.gameOver'), canvas.width / 2, canvas.height / 2 - 60);
+
+    ctx.font = '20px sans-serif';
+    ctx.fillText(`${getTrans('games.g8.score')}: ${score}`, canvas.width / 2, canvas.height / 2 - 10);
+    if (best) {
+        ctx.font = '16px sans-serif';
+        ctx.fillStyle = 'var(--primary)';
+        ctx.fillText(`${getTrans('games.g10.best')}: ${best}`, canvas.width / 2, canvas.height / 2 + 20);
+    }
+
+    ctx.fillStyle = 'white';
+    ctx.font = '18px sans-serif';
+    ctx.fillText(getTrans('games.g8.restart'), canvas.width / 2, canvas.height / 2 + 80);
+
+    ctx.font = '40px serif';
+    ctx.fillText('🔄', canvas.width / 2, canvas.height / 2 + 130);
+}
+
+/* Game 8: Catch the Love */
+let game8Active = false;
+let game8State = 'playing';
+function initGame8() {
+    game8Active = true;
+    game8State = 'playing';
+    const canvas = document.getElementById('g8-canvas');
+    const ctx = canvas.getContext('2d');
+    const scoreEl = document.getElementById('g8-score');
+    let score = 0;
+    let basket = { x: 175, y: 350, w: 50, h: 20 };
+    let items = [];
+
+    canvas.onmousemove = (e) => {
+        if (game8State !== 'playing') return;
+        const rect = canvas.getBoundingClientRect();
+        basket.x = (e.clientX - rect.left) * (canvas.width / rect.width) - basket.w / 2;
+    };
+    canvas.ontouchmove = (e) => {
+        if (game8State !== 'playing') return;
+        const rect = canvas.getBoundingClientRect();
+        basket.x = (e.touches[0].clientX - rect.left) * (canvas.width / rect.width) - basket.w / 2;
+        e.preventDefault();
+    };
+    canvas.onclick = () => {
+        if (game8State === 'gameover') initGame8();
+    };
+
+    function spawn() {
+        if (!game8Active || game8State !== 'playing') return;
+        items.push({ x: Math.random() * (canvas.width - 20), y: -20, s: Math.random() * 2 + 1, char: Math.random() > 0.5 ? '❤️' : '🌸' });
+        setTimeout(spawn, 1000);
+    }
+    spawn();
+
+    function loop() {
+        if (!game8Active) return;
+        if (game8State === 'gameover') {
+            drawGameOver(ctx, canvas, score, null, 'games.g8.title');
+            return;
+        }
+
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.fillStyle = '#e11d48';
+        ctx.fillRect(basket.x, basket.y, basket.w, basket.h);
+        ctx.fillStyle = 'white';
+        ctx.font = '20px serif';
+        ctx.textAlign = 'left';
+        ctx.fillText('🧺', basket.x + 15, basket.y + 15);
+
+        items.forEach((p, i) => {
+            p.y += p.s;
+            ctx.fillText(p.char, p.x, p.y);
+
+            if (p.y > basket.y && p.y < basket.y + basket.h && p.x > basket.x && p.x < basket.x + basket.w) {
+                score++;
+                scoreEl.textContent = score;
+                items.splice(i, 1);
+            } else if (p.y > canvas.height) {
+                game8State = 'gameover';
+            }
+        });
+
+        requestAnimationFrame(loop);
+    }
+    loop();
+}
+
+/* Game 9: Long Distance Runner (Istanbul to Palu) */
+let game9Active = false;
+let game9State = 'playing';
+function initGame9() {
+    game9Active = true;
+    game9State = 'playing';
+    const canvas = document.getElementById('g9-canvas');
+    const ctx = canvas.getContext('2d');
+    let player = { x: 50, y: 150, w: 30, h: 30, dy: 0, jump: -8, ground: 150 };
+    let gravity = 0.4;
+    let obstacles = [];
+    let frame = 0;
+    const targetDistance = 14311;
+    let jumpParticles = [];
+
+    const handleAction = () => {
+        if (game9State === 'gameover') initGame9();
+        else if (player.y === player.ground) {
+            player.dy = player.jump;
+            createJumpParticle(player.x, player.y);
+        }
+    };
+
+    window.onkeydown = (e) => { if (e.code === 'Space') handleAction(); };
+    canvas.onclick = handleAction;
+
+    function createJumpParticle(x, y) {
+        for (let i = 0; i < 3; i++) jumpParticles.push({ x, y, vx: Math.random() - 0.5, vy: -Math.random() * 2, life: 1 });
+    }
+
+    function loop() {
+        if (!game9Active) return;
+        if (game9State === 'gameover') {
+            drawGameOver(ctx, canvas, Math.floor((frame / 2000) * targetDistance), null, 'games.g9.title');
+            return;
+        }
+
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        frame++;
+        const bgX1 = -(frame * 0.5) % canvas.width;
+        const bgX2 = -(frame * 1.5) % canvas.width;
+
+        ctx.fillStyle = 'rgba(255,255,255,0.05)';
+        ctx.textAlign = 'left';
+        ctx.fillText('🏙️      🏔️      🏙️', bgX1, 100);
+        ctx.fillText('🏙️      🏔️      🏙️', bgX1 + canvas.width, 100);
+
+        ctx.fillStyle = 'rgba(255,255,255,0.1)';
+        ctx.fillText('☁️    🌳    ☁️    🌲', bgX2, 140);
+        ctx.fillText('☁️    🌳    ☁️    🌲', bgX2 + canvas.width, 140);
+
+        const progress = Math.min((frame / 2000), 1);
+        const currentKm = Math.floor(progress * targetDistance);
+
+        ctx.fillStyle = 'rgba(255,255,255,0.2)';
+        ctx.fillRect(50, 10, canvas.width - 100, 10);
+        ctx.fillStyle = 'var(--primary)';
+        ctx.fillRect(50, 10, (canvas.width - 100) * progress, 10);
+        ctx.fillStyle = 'white';
+        ctx.font = '12px sans-serif';
+        ctx.fillText(`TR ✈️ ID: ${currentKm} km`, canvas.width / 2 - 40, 35);
+
+        jumpParticles.forEach((p, i) => {
+            p.x += p.vx; p.y += p.vy; p.life -= 0.02;
+            ctx.globalAlpha = p.life;
+            ctx.fillText('❤️', p.x, p.y);
+            if (p.life <= 0) jumpParticles.splice(i, 1);
+        });
+        ctx.globalAlpha = 1;
+
+        player.dy += gravity;
+        player.y += player.dy;
+        if (player.y > player.ground) { player.y = player.ground; player.dy = 0; }
+        ctx.font = '30px serif';
+        ctx.fillText('🏃‍♀️', player.x, player.y);
+
+        if (frame % 100 === 0) obstacles.push({ x: 600, y: 155, char: Math.random() > 0.5 ? '🌵' : '🧱' });
+
+        obstacles.forEach((o, i) => {
+            o.x -= 4;
+            ctx.fillText(o.char, o.x, o.y);
+            if (o.x < -30) obstacles.splice(i, 1);
+            if (Math.abs(player.x - o.x) < 25 && Math.abs(player.y - o.y) < 25) {
+                game9State = 'gameover';
+            }
+        });
+
+        if (progress >= 1) {
+            game9State = 'success';
+            drawGameOver(ctx, canvas, targetDistance, null, 'games.g9.success');
+            return;
+        }
+
+        requestAnimationFrame(loop);
+    }
+    loop();
+}
+
+/* Game 10: Flappy Heart */
+let game10Active = false;
+let game10State = 'playing';
+function initGame10() {
+    game10Active = true;
+    game10State = 'playing';
+    const canvas = document.getElementById('g10-canvas');
+    const ctx = canvas.getContext('2d');
+    const scoreEl = document.getElementById('g10-score');
+    let score = 0;
+    let bestScore = localStorage.getItem('g10_best') || 0;
+    let heart = { x: 50, y: 250, v: 0, gravity: 0.2, jump: -4.5, angle: 0 };
+    let pipes = [];
+    let bgScroll = 0;
+
+    canvas.onclick = () => {
+        if (game10State === 'gameover') initGame10();
+        else heart.v = heart.jump;
+    };
+
+    function loop() {
+        if (!game10Active) return;
+        if (game10State === 'gameover') {
+            drawGameOver(ctx, canvas, score, bestScore, 'games.g10.title');
+            return;
+        }
+
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        bgScroll -= 0.5;
+        ctx.fillStyle = 'rgba(255,255,255,0.08)';
+        ctx.font = '40px serif';
+        ctx.textAlign = 'left';
+        for (let i = 0; i < 5; i++) {
+            ctx.fillText('☁️', (bgScroll % 200) + i * 200, 100);
+            ctx.fillText('☁️', (bgScroll * 1.5 % 300) + i * 300, 300);
+        }
+
+        heart.v += heart.gravity;
+        heart.y += heart.v;
+        heart.angle = Math.min(Math.PI / 4, Math.max(-Math.PI / 4, heart.v * 0.1));
+
+        ctx.save();
+        ctx.translate(heart.x + 15, heart.y - 15);
+        ctx.rotate(heart.angle);
+        ctx.font = '30px serif';
+        ctx.fillText('❤️', -15, 15);
+        ctx.restore();
+
+        if (pipes.length === 0 || pipes[pipes.length - 1].x < 220) {
+            let gap = 160;
+            let topH = 50 + Math.random() * (canvas.height - gap - 100);
+            pipes.push({ x: 400, top: topH, bottom: topH + gap, passed: false });
+        }
+
+        pipes.forEach((p, i) => {
+            p.x -= 2;
+            ctx.fillStyle = 'rgba(255,255,255,0.25)';
+            ctx.beginPath();
+            ctx.roundRect(p.x, 0, 45, p.top, [0, 0, 10, 10]);
+            ctx.fill();
+            ctx.beginPath();
+            ctx.roundRect(p.x, p.bottom, 45, canvas.height - p.bottom, [10, 10, 0, 0]);
+            ctx.fill();
+
+            if (!p.passed && p.x < heart.x) {
+                score++;
+                p.passed = true;
+                scoreEl.innerHTML = `${score} <small>(Best: ${bestScore})</small>`;
+            }
+            if (p.x < -50) pipes.splice(i, 1);
+
+            if (p.x < heart.x + 25 && p.x + 45 > heart.x && (heart.y - 20 < p.top || heart.y > p.bottom)) {
+                game10State = 'gameover';
+                if (score > bestScore) localStorage.setItem('g10_best', score);
+            }
+        });
+
+        if (heart.y > canvas.height || heart.y < 0) {
+            game10State = 'gameover';
+            if (score > bestScore) localStorage.setItem('g10_best', score);
+        }
+
+        requestAnimationFrame(loop);
+    }
+    loop();
 }

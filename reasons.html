@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title data-i18n="reasonsJar.title">Aşk Kavanozu – 💖</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <style>
+        .jar-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 70vh;
+            position: relative;
+        }
+
+        .jar {
+            width: 200px;
+            height: 280px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(5px);
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 40px 40px 100px 100px;
+            position: relative;
+            cursor: pointer;
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3), inset 0 0 20px rgba(255, 255, 255, 0.2);
+            overflow: hidden;
+        }
+
+        .jar:hover {
+            transform: scale(1.05) rotate(2deg);
+        }
+
+        .jar-lid {
+            width: 120px;
+            height: 30px;
+            background: #e11d48;
+            border-radius: 10px;
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            z-index: 2;
+        }
+
+        .jar:active {
+            transform: scale(0.95);
+        }
+
+        .reason-note {
+            position: absolute;
+            padding: 20px;
+            background: #fffbeb;
+            color: #78350f;
+            border-radius: 8px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            width: 250px;
+            text-align: center;
+            font-size: 18px;
+            font-family: 'Inter', sans-serif;
+            z-index: 10;
+            display: none;
+            opacity: 0;
+            transform: translateY(0) scale(0.5);
+            line-height: 1.4;
+            border-bottom: 3px solid #fde68a;
+        }
+
+        @keyframes popNote {
+            0% {
+                opacity: 0;
+                transform: translateY(0) scale(0.5) rotate(-10deg);
+            }
+
+            50% {
+                opacity: 1;
+                transform: translateY(-150px) scale(1.1) rotate(5deg);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(-120px) scale(1) rotate(0deg);
+            }
+        }
+
+        .reason-note.active {
+            display: block;
+            animation: popNote 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+        }
+
+        .instruction {
+            margin-top: 30px;
+            color: var(--muted);
+            font-style: italic;
+        }
+
+        /* Particles inside the jar */
+        .particle {
+            position: absolute;
+            font-size: 20px;
+            pointer-events: none;
+            opacity: 0.4;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="site-header">
+        <div class="container">
+            <div class="brand">
+                <span class="logo">🏺</span>
+                <span data-i18n="reasonsJar.title">Aşk Kavanozu</span>
+            </div>
+            <nav id="main-nav">
+                <a href="index.html">🏠 <span data-i18n="nav.home">Beranda</span></a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="hero">
+            <h1 data-i18n="reasonsJar.title">Aşk Kavanozu 💖</h1>
+            <p data-i18n="reasonsJar.desc">Her tıkladığında seni neden sevdiğime dair bir neden çıkacak...</p>
+        </div>
+
+        <div class="jar-container">
+            <div id="note" class="reason-note">...</div>
+            <div class="jar" id="reasons-jar">
+                <div class="jar-lid"></div>
+                <!-- Little floating hearts inside -->
+                <div class="particle" style="top:40%; left:20%;">❤️</div>
+                <div class="particle" style="top:60%; left:50%;">💖</div>
+                <div class="particle" style="top:30%; left:70%;">💕</div>
+                <div class="particle" style="top:70%; left:30%;">🥰</div>
+                <div class="particle" style="top:50%; left:80%;">💗</div>
+            </div>
+            <p class="instruction" data-i18n="reasonsJar.clickMe">Kavanoza tıkla! ✨</p>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container"><small data-i18n="footer.madeWith">Dibuat dengan ❤</small></div>
+    </footer>
+
+    <script src="translations.js"></script>
+    <script src="i18n.js"></script>
+    <script>
+        const jar = document.getElementById('reasons-jar');
+        const note = document.getElementById('note');
+        let isAnimating = false;
+
+        jar.addEventListener('click', () => {
+            if (isAnimating) return;
+            isAnimating = true;
+
+            const lang = localStorage.getItem('lang') || 'id';
+            const reasons = translations[lang].reasonsJar.reasons;
+            const randomReason = reasons[Math.floor(Math.random() * reasons.length)];
+
+            note.textContent = randomReason;
+            note.classList.remove('active');
+
+            // Force reflow
+            void note.offsetWidth;
+
+            note.classList.add('active');
+
+            // Trigger some extra particles
+            createBurst();
+
+            setTimeout(() => {
+                isAnimating = false;
+            }, 600);
+        });
+
+        function createBurst() {
+            for (let i = 0; i < 8; i++) {
+                const p = document.createElement('div');
+                p.textContent = ['❤️', '💖', '✨', '💕'][Math.floor(Math.random() * 4)];
+                p.style.position = 'fixed';
+                const rect = jar.getBoundingClientRect();
+                p.style.left = (rect.left + rect.width / 2) + 'px';
+                p.style.top = (rect.top + 20) + 'px';
+                p.style.pointerEvents = 'none';
+                p.style.zIndex = '1000';
+                p.style.transition = 'all 0.8s cubic-bezier(0.19, 1, 0.22, 1)';
+                document.body.appendChild(p);
+
+                setTimeout(() => {
+                    const x = (Math.random() - 0.5) * 300;
+                    const y = -100 - Math.random() * 200;
+                    p.style.transform = `translate(${x}px, ${y}px) rotate(${Math.random() * 360}deg)`;
+                    p.style.opacity = '0';
+                }, 10);
+                setTimeout(() => p.remove(), 800);
+            }
+        }
+    </script>
+</body>
+
+</html>

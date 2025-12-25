@@ -82,4 +82,16 @@ function initLanguage() {
     window.updateTranslations = updateContent;
 }
 
-document.addEventListener('DOMContentLoaded', initLanguage);
+document.addEventListener('DOMContentLoaded', () => {
+    initLanguage();
+
+    // Load Global Effects
+    const snowScript = document.createElement('script');
+    snowScript.src = 'snow.js';
+    document.body.appendChild(snowScript);
+
+    const wishScript = document.createElement('script');
+    wishScript.src = 'wishing_star.js';
+    document.body.appendChild(wishScript);
+});
+

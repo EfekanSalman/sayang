@@ -200,6 +200,10 @@
             </div>
             <nav>
                 <a href="index.html">🏠 <span data-i18n="nav.home">Beranda</span></a>
+                <a href="letter.html">💌 <span data-i18n="nav.letter">Surat</span></a>
+                <a href="map.html">🌍 <span data-i18n="nav.map">Peta</span></a>
+                <a href="reasons.html">🏺 <span data-i18n="reasonsJar.title">Aşk Kavanozu</span></a>
+                <a href="garden.html">🪴 <span data-i18n="garden.title">Aşk Bahçemiz</span></a>
             </nav>
         </div>
     </header>
@@ -256,6 +260,30 @@
                 <div class="game-icon">🕰️</div>
                 <h3 data-i18n="games.g7.title">Ne Zaman?</h3>
                 <p data-i18n="games.g7.desc">...</p>
+                <button class="btn" data-i18n="gamePage.playBtn">Oyna ▶️</button>
+            </div>
+
+            <!-- Game 8 Launcher: Catch the Love -->
+            <div class="game-launcher" onclick="openGame(8)">
+                <div class="game-icon">🧺❤️</div>
+                <h3 data-i18n="games.g8.title">Kalp Yakalama</h3>
+                <p data-i18n="games.g8.desc">Düşen aşkları topla!</p>
+                <button class="btn" data-i18n="gamePage.playBtn">Oyna ▶️</button>
+            </div>
+
+            <!-- Game 9 Launcher: Long Distance Runner -->
+            <div class="game-launcher" onclick="openGame(9)">
+                <div class="game-icon">🏃‍♀️💨</div>
+                <h3 data-i18n="games.g9.title">Aşk Yolu</h3>
+                <p data-i18n="games.g9.desc">İstanbul'dan Palu'ya koş!</p>
+                <button class="btn" data-i18n="gamePage.playBtn">Oyna ▶️</button>
+            </div>
+
+            <!-- Game 10 Launcher: Flappy Heart -->
+            <div class="game-launcher" onclick="openGame(10)">
+                <div class="game-icon">🕊️❤️</div>
+                <h3 data-i18n="games.g10.title">Flappy Heart</h3>
+                <p data-i18n="games.g10.desc">Kalbi engellerden koru!</p>
                 <button class="btn" data-i18n="gamePage.playBtn">Oyna ▶️</button>
             </div>
         </div>
@@ -339,7 +367,35 @@
                 <div id="game7-result"
                     style="display:none; font-size:20px; color:var(--primary); margin-top:20px; line-height:1.5;"></div>
             </div>
+
+            <!-- Game 8 View: Catch the Love -->
+            <div id="view-game-8" class="game-view">
+                <div style="display:flex; justify-content:space-between; width:100%; padding:0 10px;">
+                    <h2 data-i18n="games.g8.title">Kalp Yakalama</h2>
+                    <span id="g8-score">0</span>
+                </div>
+                <canvas id="g8-canvas" width="400" height="400"
+                    style="background: linear-gradient(to bottom, #1e293b, #0f172a); border-radius:12px; width:100%"></canvas>
+            </div>
+
+            <!-- Game 9 View: Long Distance Runner -->
+            <div id="view-game-9" class="game-view">
+                <h2 data-i18n="games.g9.title">Aşk Yolu</h2>
+                <canvas id="g9-canvas" width="600" height="200"
+                    style="background: linear-gradient(to right, #1e293b, #0f172a); border-radius:12px; width:100%"></canvas>
+            </div>
+
+            <!-- Game 10 View: Flappy Heart -->
+            <div id="view-game-10" class="game-view">
+                <div style="display:flex; justify-content:space-between; width:100%; padding:0 10px;">
+                    <h2 data-i18n="games.g10.title">Flappy Heart</h2>
+                    <span id="g10-score">0</span>
+                </div>
+                <canvas id="g10-canvas" width="400" height="500"
+                    style="background: linear-gradient(to bottom, #312e81, #1e1b4b); border-radius:12px; width:100%"></canvas>
+            </div>
         </div>
+    </div>
 
     </div>
     </div>
